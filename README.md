@@ -1,16 +1,28 @@
-# React + Vite
+# Tic Tac Toe
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive, two-player Tic Tac Toe game built with React and Vite. Supports an N×N board (currently 5×5) with win, draw, and restart mechanics. Deployed via GitHub Pages.
 
-Currently, two official plugins are available:
+**Live:** [https://varun-kelkar.github.io/tic-tac-toe-react/](https://varun-kelkar.github.io/tic-tac-toe-react/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Project Overview
 
-## React Compiler
+- **Tech Stack:** React 19, Vite 8, gh-pages
+- **Board:** Dynamic N×N grid — change the board size in one place and everything adapts (grid layout, reset, win detection)
+- **Win Detection:** Checks all rows, columns, and both diagonals after every move
+- **Draw Detection:** Triggers when the board is full with no winner; players can also declare an early draw
+- **Restart:** Play Again button appears after any game ends (win or draw)
+- **Responsive:** Fluid layout using CSS `clamp()` — optimized for mobile-first play
+- **Deployment:** `npm run deploy` builds and publishes to GitHub Pages via `gh-pages`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Core Challenges
 
-## Expanding the ESLint configuration
+### UX Challenges
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Dynamic Grid Layout** — The CSS grid adapts its columns from the board state via an inline style (`gridTemplateColumns: repeat(n, 1fr)`), so changing the board dimension requires no CSS changes.
+2. **Mobile Responsiveness** — Used `clamp()` for cell sizes, gaps, padding, and font sizes so the board scales smoothly from ~320px phones to desktop without breakpoints.
+3. **State-Driven UX** — A single `winner` state (`null`, `"playerOne"`, `"playerTwo"`, `"draw"`) drives the turn indicator, winner banner, and button visibility — keeping the render logic simple and declarative.
+
+### Logical Challenges
+
+1. **N×N Win Detection** — Generalised the win-check algorithm to work for any board size, scanning rows, columns, and both diagonals dynamically instead of hardcoding winning combinations.
+2. **Draw Detection** — Detects a draw when the board is full with no winner; also supports an early draw declaration by the players, both funneling through the same state transition.
