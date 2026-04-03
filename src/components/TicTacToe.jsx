@@ -68,7 +68,17 @@ const TicTacToe = () => {
   };
 
   return (
-    <>
+    <div className="game-wrapper">
+      <h1 className="game-title">Tic Tac Toe</h1>
+      {!winner && (
+        <div className="turn-indicator">
+          {playerOne ? (
+            <>It's <span className="player-x">X</span>'s turn</>
+          ) : (
+            <>It's <span className="player-o">O</span>'s turn</>
+          )}
+        </div>
+      )}
       <div className="grid-container">
         {board.map((row, rowIndex) =>
           row.map((cell, colIndex) => (
@@ -82,9 +92,9 @@ const TicTacToe = () => {
           ))
         )}
       </div>
-      {winner !== null && winner === 'playerOne' && <div>Player One Wins</div>}
-      {winner !== null && winner === 'playerTwo' && <div>Player Two Wins</div>}
-    </>
+      {winner === 'playerOne' && <div className="winner-banner player-one">Player One Wins!</div>}
+      {winner === 'playerTwo' && <div className="winner-banner player-two">Player Two Wins!</div>}
+    </div>
   );
 };
 
