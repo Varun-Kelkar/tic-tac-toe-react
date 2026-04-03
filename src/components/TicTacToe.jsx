@@ -3,10 +3,11 @@ import Item from "./Item";
 import { useState } from "react";
 const TicTacToe = () => {
   const [board, setBoard] = useState([
-    new Array(4).fill(""),
-    new Array(4).fill(""),
-    new Array(4).fill(""),
-    new Array(4).fill(""),
+    new Array(5).fill(""),
+    new Array(5).fill(""),
+    new Array(5).fill(""),
+    new Array(5).fill(""),
+    new Array(5).fill(""),
   ]);
 
   const [playerOne, setPlayerOne] = useState(true);
@@ -76,12 +77,8 @@ const TicTacToe = () => {
   };
 
   const resetGame = () => {
-    setBoard([
-      new Array(4).fill(""),
-      new Array(4).fill(""),
-      new Array(4).fill(""),
-      new Array(4).fill(""),
-    ]);
+    const n = board.length;
+    setBoard(Array.from({ length: n }, () => new Array(n).fill("")));
     setPlayerOne(true);
     setWinner(null);
   };
@@ -102,7 +99,10 @@ const TicTacToe = () => {
           )}
         </div>
       )}
-      <div className="grid-container">
+      <div
+        className="grid-container"
+        style={{ gridTemplateColumns: `repeat(${board.length}, 1fr)` }}
+      >
         {board.map((row, rowIndex) =>
           row.map((cell, colIndex) => (
             <Item

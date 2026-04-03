@@ -1,19 +1,20 @@
 .grid-item {
-  width: 80px;
-  height: 80px;
+  width: clamp(48px, 15vw, 80px);
+  height: clamp(48px, 15vw, 80px);
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.75rem;
+  font-size: clamp(1.1rem, 4vw, 1.75rem);
   font-weight: 800;
   font-family: var(--heading, system-ui, sans-serif);
-  border-radius: 12px;
+  border-radius: clamp(8px, 2vw, 12px);
   background: #ffffff;
   border: 1px solid rgba(37, 99, 235, 0.1);
   color: var(--text, #64748b);
   transition: all 0.2s ease;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .grid-item:hover {
