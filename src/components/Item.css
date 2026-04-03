@@ -1,0 +1,10 @@
+.grid-item {
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border-radius: 8px;
+}
